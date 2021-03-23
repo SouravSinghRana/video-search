@@ -6,7 +6,7 @@ import useVideos from '../hooks/useVideos';
 
 const App = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const [videos, search] = useVideos('workout');
+  const [videos, search, error] = useVideos('workout');
 
   useEffect(() => {
     setSelectedVideo(videos[0]);
@@ -15,16 +15,19 @@ const App = () => {
   return (
     <div className="ui container">
       <SearchBar onFormSubmit={search} />
-      <div className="ui stackable grid">
-        <div className="ui row">
-          <div className="eleven wide column">
-            <VideoDetail video={selectedVideo} />
-          </div>
-          <div className="five wide column">
-            <VideoList onVideoSelect={setSelectedVideo} videos={videos} />
-          </div>
-        </div>
-      </div>
+      {
+            error ? <div className="ui red message" style={{"marginTop":"20px"}}>Sorry No Found With Your Search Term</div> : 
+            <div className="ui stackable grid">
+              <div className="ui row">
+                <div className="eleven wide column">
+                  <VideoDetail video={selectedVideo} />
+                </div>
+                <div className="five wide column">
+                  <VideoList onVideoSelect={setSelectedVideo} videos={videos} />
+                </div>
+              </div>
+            </div>
+      }
     </div>
   );
 };
