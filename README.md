@@ -65,6 +65,8 @@ The Application Runs on **localhost:3000**
 
 5. **VideoItem** Component : This Component creates ui for list of video it gets from the api response and passes it to the **VideoList** Component.
 
+6. **useVideos** customHook Component : This is a custom hook component to set default video search , error messages and search videos user enters.
+
 #### HTTP client
 
 **axios** library is used to make HTTP Calls
